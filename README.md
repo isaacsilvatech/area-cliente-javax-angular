@@ -19,7 +19,7 @@ A **Área do Cliente** é uma aplicação web desenvolvida com **Angular 17** no
   ![image](https://github.com/user-attachments/assets/53734477-3358-46e9-8256-6e2f0f1654d5)
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/409acdb1-8a23-4e6a-a5fd-18851546b3ef" width="45%" />
+  <img src="https://github.com/user-attachments/assets/8766c347-8523-445b-85e2-83a7e3dde087" width="45%" />
   <img src="https://github.com/user-attachments/assets/8abe6295-fe38-4b94-8a3f-6e7d1c006bef" width="45%" />
 </p>
 
