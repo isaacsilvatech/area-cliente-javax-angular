@@ -15,3 +15,6 @@ A **Área do Cliente** é uma aplicação web desenvolvida com **Angular 17** no
 - **Frontend**: Angular 17, PrimeNG, PrimeFlex, PrimeIcons
 - **Backend**: Jakarta EE (javax), JWT, WildFly
 - **E-mail**: Envio de e-mails com templates HTML para recuperação de senha
+
+  ![image](https://github.com/user-attachments/assets/53734477-3358-46e9-8256-6e2f0f1654d5)
+
