@@ -1,0 +1,39 @@
+.container-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8rem;
+
+    .card {
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 0.5rem;
+        padding: 2.5rem;
+        width: 100%;
+        max-width: 500px;
+
+        h3 {
+            font-size: 1.5rem;
+            margin: 0;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin: 0 0 2rem 0;
+            font-size: 1.2rem;
+            color: var(--surface-600);
+        }
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .container-card {
+        margin-top: 5rem;
+
+        .card {
+            box-shadow: none;
+            padding: 1rem;
+        }
+
+    }
+}

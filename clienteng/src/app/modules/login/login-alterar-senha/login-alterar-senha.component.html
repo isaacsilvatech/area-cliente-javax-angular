@@ -1,0 +1,33 @@
+<div class="container-card">
+    <div class="card" [formGroup]="form">
+        <h3>Alterar senha</h3>
+        <p>Insira sua nova senha.</p>
+
+        <p-password inputId="senha" class="w-full" styleClass="w-full" inputStyleClass="w-full" variant="filled"
+            formControlName="senha" [toggleMask]="true" [feedback]="false" cmpProximoCampo="confirmarSenha"
+            placeholder="Nova senha"></p-password>
+        <small *ngIf="form.controls.senha.touched && form.controls.senha.invalid" class="text-red-500 font-bold">Digite
+            sua nova senha!</small>
+
+        <p-password inputId="confirmarSenha" class="w-full" styleClass="w-full mt-4" inputStyleClass="w-full"
+            variant="filled" formControlName="confirmarSenha" [toggleMask]="true" [feedback]="false"
+            cmpProximoCampo="btn-alterar" placeholder="Confirmar senha"></p-password>
+        <small *ngIf="form.controls.confirmarSenha.touched && form.controls.confirmarSenha.invalid"
+            class="text-red-500 font-bold">Digite
+            sua nova senha!</small>
+
+        <small
+            *ngIf=" form.controls.confirmarSenha.touched && form.controls.confirmarSenha.valid && form.getRawValue().senha != form.getRawValue().confirmarSenha"
+            class="text-red-500 font-bold">As
+            senhas não conferem!</small>
+
+        <small *ngIf="msg" class="block mt-3 text-red-500 font-bold">{{msg}}</small>
+
+        <div class="flex gap-2 mt-5">
+            <button pButton label="Cancelar" [outlined]="true" class="w-7rem p-button-secondary"
+                routerLink="../"></button>
+            <button id="btn-alterar" pButton label="Alterar" class="flex-1" (click)="alterar()"
+                [loading]="loading"></button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="container-card">
+    <div class="card">
+        <h3>Criar nova senha</h3>
+        <p>Para continuar, escolha:</p>
+
+        <label *ngFor="let opcao of opcoes"
+            class="w-full border-1 surface-border border-round p-3 flex gap-2 cursor-pointer" for="radio">
+            <p-radioButton inputId="radio" name="opcao" [formControl]="selectedOpcao" [value]="opcao"></p-radioButton>
+            <span class="flex-1">
+                <span class="border-bottom-1 surface-border px-1 py-2 flex justify-content-between w-full mb-2"><span
+                        class="font-bold">{{ opcao.tipo == 'email' ? 'Receber por e-mail': 'Receber por SMS' }}</span>
+
+                    <i *ngIf="opcao.tipo == 'email'" class="pi pi-envelope text-xl text-primary"></i>
+                    <i *ngIf="opcao.tipo == 'sms'" class="pi pi-send text-xl text-primary"></i>
+                </span>
+                <span class="text-600 font-medium text-lg">{{opcao.descricao}}</span>
+            </span>
+        </label>
+
+        <div class="flex gap-2 mt-5">
+            <button pButton label="Voltar" [outlined]="true" class="w-7rem p-button-secondary"
+                routerLink="../esqueci-senha"></button>
+            <button id="btn-continuar" pButton label="Continuar" class="flex-1" (click)="continuar()"
+                [loading]="loading"></button>
+        </div>
+    </div>
+</div>

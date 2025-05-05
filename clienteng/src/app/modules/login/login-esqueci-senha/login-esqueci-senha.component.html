@@ -1,0 +1,15 @@
+<div class="container-card">
+    <div class="card">
+        <h3>Esqueceu sua senha?</h3>
+        <p>Insira seu e-mail ou CPF para criar uma nova senha</p>
+        <input pInputText class="w-full" variant="filled" [formControl]="cpf" mask="000.000.000-00"
+            placeholder="Digite seu CPF" cmpProximoCampo="btn-continuar">
+        <small *ngIf="cpf.touched && cpf.invalid" class="text-red-500 font-bold mb-5">Digite
+            seu CPF</small>
+        <div class="flex gap-2 mt-5">
+            <button pButton label="Voltar" [outlined]="true" class="w-7rem p-button-secondary"
+                routerLink="../"></button>
+            <button id="btn-continuar" pButton label="Continuar" class="flex-1" (click)="continuar()" [loading]="loading"></button>
+        </div>
+    </div>
+</div>

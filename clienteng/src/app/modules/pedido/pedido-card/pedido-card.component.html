@@ -1,0 +1,33 @@
+<div class="card">
+    <div class="flex justify-content-between gap-2 mb-3">
+        <span class="font-bold text-xl">Pedido nº {{pedVndCardDto?.codPedVnd}}</span>
+        <span class="status"
+            [ngStyle]="{color: status[pedVndCardDto?.status]?.color, backgroundColor: status[pedVndCardDto?.status]?.bg}">
+            <i [class]="status[pedVndCardDto?.status]?.icon"></i> {{status[pedVndCardDto?.status]?.label}}
+        </span>
+    </div>
+
+    <p class="font-medium text-600 "><i class="pi pi-calendar text-primary"></i> Realizado em
+        {{pedVndCardDto?.dataCadastro}}</p>
+    <p class="font-medium text-600"><i class="pi pi-dollar text-primary"></i> Valor total da compra:
+        <span class="font-semibold">{{pedVndCardDto?.valorTotalBruto - pedVndCardDto?.valorTotalDesconto | currency:
+            'BRL'}}</span>
+    </p>
+
+
+    <div class="flex flex-wrap gap-2 mb-3">
+        <div *ngFor="let prod of prodList" class="flex align-items-center flex-column gap-1">
+            <img *ngIf="prod.imagem" [src]="getSrc(prod.imagem)"
+                style="object-fit: cover; width: 64px; height: 64px; border-radius: 5px;">
+            <div *ngIf="!prod.imagem" class="flex justify-content-center align-items-center"
+                style="width: 64px; height: 64px; border: solid 1px var(--surface-500); border-radius: 5px;">
+                <i class="pi pi-image text-lg text-500"></i>
+            </div>
+            <small class="font-bold">{{prod.codProd}}</small>
+        </div>
+    </div>
+
+    <div class="card-footer">
+        <p-button styleClass="w-full" label="Ver detalhes do pedido" (onClick)="detalhe()"></p-button>
+    </div>
+</div>

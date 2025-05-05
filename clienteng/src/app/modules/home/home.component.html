@@ -1,0 +1,57 @@
+<cmp-header>
+    <cmp-header-categorie text="Boas-vindas!" textBold="Entrar" icon="pi pi-user"
+        routerLink="login"></cmp-header-categorie>
+    <cmp-header-categorie text="Acompanhar" textBold="pedidos" icon="pi pi-box"
+        (onClick)="pedidoOpen = true"></cmp-header-categorie>
+    <cmp-header-menu icon="pi pi-shopping-bag" (onClick)="pedidoOpen = true"></cmp-header-menu>
+    <cmp-header-menu (onClick)="menuOpen = true"></cmp-header-menu>
+</cmp-header>
+<cmp-main>
+    <div class="card-grid">
+        <cmp-card>
+            <cmp-card-header>
+                <h2 class="card__title">Boas-vindas!</h2>
+                <p class="card__description">Faça seu Login ou cadastro</p>
+            </cmp-card-header>
+            <cmp-card-content>
+                <button pButton [rounded]="true" [outlined]="true" class="w-7rem" label="Entrar"
+                    routerLink="login"></button>
+            </cmp-card-content>
+        </cmp-card>
+
+        <cmp-card>
+            <cmp-card-header>
+                <h2 class="card__title"><i class="card__icon pi pi-box"></i> Pedidos</h2>
+                <p class="card__description">Acompanhe seus pedidos</p>
+            </cmp-card-header>
+            <cmp-card-content>
+                <button pButton [rounded]="true" label="Acompanhar" (click)="pedidoOpen = true"></button>
+            </cmp-card-content>
+        </cmp-card>
+    </div>
+</cmp-main>
+
+
+<p-sidebar [(visible)]="pedidoOpen" position="right">
+    <div class="pedido__content">
+        <i class="pi pi-shopping-cart text-6xl"></i>
+        <h3 class="pedido__text-bold">Acompanhe seu pedido</h3>
+        <p class="pedido__text-normal">Acesse agora a sua conta para
+            acompanhar seus últimos pedidos.</p>
+        <button pButton label="Entrar" class="w-full" [rounded]="true" routerLink="login"></button>
+    </div>
+</p-sidebar>
+
+<p-sidebar [(visible)]="menuOpen" position="right">
+    <ng-template pTemplate="header">
+        <div class="sidebar__header">
+            <img src="assets/application/favicon/favicon-96x96.png" alt="Logo" class="logo" />
+            <h1 class="title">Menu</h1>
+        </div>
+    </ng-template>
+    <div class="sidebar__content">
+        <h3 class="sidebar__text-bold">Boas-vindas!</h3>
+        <p class="sidebar__text-normal">Faça seu Login</p>
+        <button pButton label="Entrar" class="w-full" [rounded]="true" routerLink="login"></button>
+    </div>
+</p-sidebar>

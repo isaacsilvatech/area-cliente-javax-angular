@@ -1,0 +1,78 @@
+<h2 class="font-bold text-primary-800">Meus dados</h2>
+<div class="bg-gray-100 p-3 font-bold text-600 mb-3">Dados da conta</div>
+
+<div [formGroup]="form">
+    <p *ngIf="form.getRawValue().colaborador" class="text-red-500 font-bold">*Colaboradores não têm permissão para
+        alterar informações pessoais!</p>
+
+    <div class="field">
+        <label><span class="text-red-500">*</span> CPF</label>
+        <input pInputText mask="CPF_CNPJ" [cmpControleEnabled]="false" formControlName="cpfCnpj" variant="filled">
+    </div>
+    <div class="flex flex-wrap gap-2">
+        <div class="field flex-1" style="min-width: 300px;">
+            <label><span class="text-red-500">*</span> Nome</label>
+            <input pInputText class="w-full" formControlName="nomeRazaoSocial"
+                [cmpControleEnabled]="!form.getRawValue().colaborador" cmpProximoCampo="celular">
+            <small class="text-red-500"
+                *ngIf="form.controls.nomeRazaoSocial.touched && form.controls.nomeRazaoSocial.errors['required']">Preencha
+                o
+                campo 'Nome'!</small>
+        </div>
+    </div>
+    <div class="field mb-4">
+        <label>E-mail</label>
+        <span class="font-bold text-600 text-lg">{{form.getRawValue().email}}</span>
+    </div>
+    <div class="field">
+        <label><span class="text-red-500">*</span> Celular</label>
+        <input id="celular" class="block" pInputText formControlName="celular" mask="(99) 99999-9999"
+            cmpProximoCampo="dataNacimento" [cmpControleEnabled]="!form.getRawValue().colaborador">
+        <small class="text-red-500" *ngIf="form.controls.celular.touched && form.controls.celular.invalid">Preencha o
+            campo 'Celular'!</small>
+    </div>
+    <div class="field">
+        <label><p-radioButton label="Data de nascimento" formControlName="tipoNascimento" name="tipoNascimento"
+                [value]="1" [cmpControleEnabled]="!form.getRawValue().colaborador"></p-radioButton> </label>
+        <p-calendar inputId="dataNacimento" [showIcon]="true" [touchUI]="true" cmpProximoCampo="salvar"
+            formControlName="dataNacimento" [cmpControleEnabled]="form.getRawValue().tipoNascimento == 1"
+            [cmpControleEnabled]="!form.getRawValue().colaborador"></p-calendar>
+
+        <small class="text-red-500"
+            *ngIf="form.controls.dataNacimento.touched && form.controls.dataNacimento.invalid && form.getRawValue().tipoNascimento == 1">Preencha
+            o
+            campo 'Data de nascimento'!</small>
+    </div>
+    <div class="field">
+        <label> <p-radioButton label="Aniversário" formControlName="tipoNascimento" name="tipoNascimento" [value]="2"
+                [cmpControleEnabled]="!form.getRawValue().colaborador"></p-radioButton> </label>
+
+        <div>
+            <p-inputNumber [useGrouping]="false" [maxlength]="2" placeholder="Dia" [style]="{width: '80px'}"
+                formControlName="nascDia" cmpProximoCampo="nascMes" [inputStyle]="{width: '80px'}"
+                [cmpControleEnabled]="form.getRawValue().tipoNascimento == 2"
+                [cmpControleEnabled]="!form.getRawValue().colaborador" [max]="31"></p-inputNumber>
+
+            <p-inputNumber inputId="nascMes" [useGrouping]="false" [maxlength]="2" [max]="12" placeholder="Mês"
+                [style]="{width: '80px'}" [inputStyle]="{width: '80px'}"
+                [cmpControleEnabled]="form.getRawValue().tipoNascimento == 2" formControlName="nascMes"
+                cmpProximoCampo="salvar" [cmpControleEnabled]="!form.getRawValue().colaborador"></p-inputNumber>
+        </div>
+
+        <small class="text-red-500"
+            *ngIf="( (form.controls.nascDia.touched && form.controls.nascDia.invalid) || (form.controls.nascMes.touched && form.controls.nascMes.invalid)) && form.getRawValue().tipoNascimento == 2">Preencha
+            o
+            campo 'Aniversário'!</small>
+    </div>
+    <div class="field">
+        <label>Receber contato colaborador</label>
+        <p-inputSwitch formControlName="receberContatoColaborador"
+            [cmpControleEnabled]="!form.getRawValue().colaborador" />
+    </div>
+    <div class="field">
+        <label>Receber ofertas</label>
+        <p-inputSwitch formControlName="receberOfertas" [cmpControleEnabled]="!form.getRawValue().colaborador" />
+    </div>
+    <button id="salvar" pButton label="Salvar" class="w-10rem mobile mb-5"
+        [cmpControleEnabled]="!form.getRawValue().colaborador" (click)="salvar()" [loading]="loading"></button>
+</div>

@@ -1,0 +1,35 @@
+.categorie {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem 1.2rem;
+    border-radius: 2rem;
+
+    &:hover {
+        cursor: pointer;
+        background-color: var(--primary-400);
+    }
+
+    .categorie__icon {
+        font-size: 1.5rem;
+        color: white;
+    }
+
+    .categorie__text {
+        display: flex;
+        flex-direction: column;
+
+        .categorie__normal {
+            color: var(--primary-100);
+        }
+
+        .categorie__bold {
+            font-weight: 600;
+            color: white;
+        }
+
+        .categorie__bold:visited {
+            color: var(--primary-50);
+        }
+    }
+}

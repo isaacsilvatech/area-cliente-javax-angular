@@ -1,0 +1,21 @@
+<button pButton icon="pi pi-chevron-left" label="Voltar" [text]="true" routerLink="../"></button>
+
+<h2 class="font-bold text-primary-800">Detalhe do pedido</h2>
+<span class="status"
+    [ngStyle]="{color: status[pedVndDto?.status]?.color, backgroundColor: status[pedVndDto?.status]?.bg}">
+    <i [class]="status[pedVndDto?.status]?.icon"></i> {{status[pedVndDto?.status]?.label}}
+</span>
+
+<p class="font-bold mb-4"> Pedido nº {{pedVndDto?.codPedVnd}} - {{pedVndDto?.dataCadastro}}</p>
+
+<div class="bg-gray-100 p-3 font-bold text-600 mb-3">
+    Produtos
+</div>
+
+<div class="bg-gray-100 p-3 font-bold text-600 mb-3">
+    Endereço de entrega
+</div>
+
+<div class="bg-gray-100 p-3 font-bold text-600 mb-3">
+    Forma de pagamento
+</div>

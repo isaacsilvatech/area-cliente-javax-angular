@@ -1,0 +1,39 @@
+<h2 class="font-bold text-primary-800">Alterar senha</h2>
+<div class="form" [formGroup]="form">
+    <div class="field ">
+        <label>Senha atual</label>
+        <p-password inputId="senha" class="w-full" styleClass="w-full" inputStyleClass="w-full" formControlName="senhaAtual"
+            [toggleMask]="true" [feedback]="false" cmpProximoCampo="senhaNova"></p-password>
+        <small *ngIf="form.controls.senhaAtual.touched && form.controls.senhaAtual.invalid"
+            class="text-red-500 font-bold">Digite
+            sua senha</small>
+        <small *ngIf="msg == 'SENHA_INVALIDA'" class="text-red-500 font-bold">Senha incorreta!</small>
+    </div>
+
+    <div class="field ">
+        <label>Senha nova</label>
+        <p-password inputId="senhaNova" class="w-full" styleClass="w-full" inputStyleClass="w-full" formControlName="senhaNova"
+            [toggleMask]="true" [feedback]="false" cmpProximoCampo="confirmarSenha"></p-password>
+        <small *ngIf="form.controls.senhaNova.touched && form.controls.senhaNova.invalid"
+            class="text-red-500 font-bold">Digite
+            sua nova senha!</small>
+    </div>
+    <div class="field ">
+        <label>Confirmar senha</label>
+        <p-password inputId="confirmarSenha" class="w-full" styleClass="w-full" inputStyleClass="w-full"
+            formControlName="senhaNovaRepetida" [toggleMask]="true" [feedback]="false"
+            cmpProximoCampo="btn"></p-password>
+        <small *ngIf="form.controls.senhaNovaRepetida.touched && form.controls.senhaNovaRepetida.invalid"
+            class="text-red-500 font-bold">Digite
+            sua nova senha!</small>
+
+        <small
+            *ngIf=" form.controls.senhaNovaRepetida.touched && form.controls.senhaNovaRepetida.valid && form.getRawValue().senhaNova != form.getRawValue().senhaNovaRepetida"
+            class="text-red-500 font-bold">As
+            senhas não conferem!</small>
+    </div>
+
+    <p *ngIf="msg" class="text-red-500 font-bold ">{{msg}}</p>
+
+    <button id="btn" pButton label="Salvar" class="w-10rem mobile mb-5" (click)="salvar()" [loading]="loading"></button>
+</div>

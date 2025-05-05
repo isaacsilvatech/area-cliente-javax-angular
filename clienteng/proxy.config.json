@@ -1,0 +1,11 @@
+{
+  "/eps": {
+    "target": "http://localhost:8080/clientesrv",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/eps": "/eps"
+    }
+  }
+}

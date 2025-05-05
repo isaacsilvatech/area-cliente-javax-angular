@@ -1,0 +1,162 @@
+<h2 class="font-bold text-primary-800">Meus pedidos</h2>
+<!-- SESSÃO FILTRO -->
+<section class="mb-4" [formGroup]="form">
+
+    <div class="mb-2">
+
+        <div class="bg-gray-100 p-3 font-bold text-600 mb-3">
+            Pedidos realizados
+        </div>
+
+        <!-- SIDEBAR FILTRO -->
+        <p-sidebar [(visible)]="filtroVisivel" position="right" (onHide)="filtrar()" [style]="{width: '350px'}">
+            <ng-template pTemplate="header">
+                <h3>Filtro</h3>
+            </ng-template>
+            <ng-template pTemplate="content">
+                <div class="field">
+                    <label><i class="pi pi-hashtag"></i> Cód. Pedido</label>
+                    <p-inputNumber [useGrouping]="false" formControlName="codPedVnd" [style]="{width: '100px'}"
+                        [inputStyle]="{width: '100px'}" placeholder="#"></p-inputNumber>
+                </div>
+                <div class="field">
+                    <label><i class="pi pi-calendar"></i> Data cadastro</label>
+                    <div class="flex align-items-center gap-2">
+                        <p-calendar formControlName="dataDe" [touchUI]="true" placeholder="__/__/____" dataType="string"
+                            [showClear]="true"></p-calendar>
+                        <span>
+                            até
+                        </span>
+                        <p-calendar formControlName="dataAte" [touchUI]="true" placeholder="__/__/____"
+                            dataType="string" [showClear]="true"></p-calendar>
+                    </div>
+                </div>
+                <div class="field">
+                    <label><i class="pi pi-star"></i> Status</label>
+                    <div class="status-field">
+                        <ul class="status-field-list">
+                            <li>
+                                <p-checkbox formControlName="gravado" label="Gravado" [binary]="true"></p-checkbox>
+                            </li>
+                            <li>
+                                <p-checkbox formControlName="enviado" label="Enviado" [binary]="true"></p-checkbox>
+                            </li>
+                            <li>
+                                <p-checkbox formControlName="pago" label="Pago" [binary]="true"></p-checkbox>
+                            </li>
+                            <li>
+                                <p-checkbox formControlName="despachado" label="Despachado"
+                                    [binary]="true"></p-checkbox>
+                            </li>
+                            <li>
+                                <p-checkbox formControlName="entregue" label="Entregue" [binary]="true"></p-checkbox>
+                            </li>
+                        </ul>
+                        <ul class="status-field-list">
+                            <li>
+                                <p-checkbox formControlName="finalizado" label="Finalizado"
+                                    [binary]="true"></p-checkbox>
+                            </li>
+                            <li>
+                                <p-checkbox formControlName="cancelado" label="Cancelado" [binary]="true"></p-checkbox>
+                            </li>
+                            <li>
+                                <p-checkbox formControlName="expirado" label="Expirado" [binary]="true"></p-checkbox>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <button pButton icon="pi pi-filter" label="Filtrar" class="w-full" (click)="filtrar()"></button>
+            </ng-template>
+        </p-sidebar>
+    </div>
+
+    <!-- FILTRO APLICADO -->
+    <div class="text-900">
+        <!-- FILTRO CODIGO -->
+        <small class="white-space-nowrap" *ngIf="form.controls.codPedVnd.getRawValue()">
+            <i class="pi pi-hashtag"></i> {{form.controls.codPedVnd.getRawValue()}}
+            <span class="mx-2">|</span>
+        </small>
+
+        <!-- FILTRO DATA -->
+        <small class="white-space-nowrap"
+            *ngIf="form.controls.dataDe.getRawValue() || form.controls.dataAte.getRawValue()">
+            <i class="pi pi-calendar"></i>
+            <span *ngIf="form.controls.dataDe.getRawValue() && !form.controls.dataAte.getRawValue()">
+                {{form.controls.dataDe.getRawValue()}}
+            </span>
+            <span *ngIf="!form.controls.dataDe.getRawValue() && form.controls.dataAte.getRawValue()">
+                {{form.controls.dataAte.getRawValue()}}
+            </span>
+            <span *ngIf="form.controls.dataDe.getRawValue() && form.controls.dataAte.getRawValue()">
+                {{form.controls.dataDe.getRawValue()}} - {{form.controls.dataAte.getRawValue()}}
+            </span>
+            <span class="mx-2">|</span>
+        </small>
+
+        <!-- FILTRO GRAVADO -->
+        <small class="white-space-nowrap" *ngIf="form.controls.gravado.getRawValue()">
+            <i class="pi pi-star"></i> <span> Gravado</span>
+            <span class="mx-2">|</span>
+        </small>
+
+        <!-- FILTRO PAGO -->
+        <small class="white-space-nowrap" *ngIf="!!form.controls.enviado.getRawValue()">
+            <i class="pi pi-star"></i> <span> Enviado</span>
+            <span class="mx-2">|</span>
+        </small>
+
+        <!-- FILTRO PAGO -->
+        <small class="white-space-nowrap" *ngIf="!!form.controls.pago.getRawValue()">
+            <i class="pi pi-star"></i> <span> Pago</span>
+            <span class="mx-2">|</span>
+        </small>
+
+        <!-- FILTRO DESPACHADO -->
+        <small class="white-space-nowrap" *ngIf="!!form.controls.despachado.getRawValue()">
+            <i class="pi pi-star"></i> <span> Despachado</span>
+            <span class="mx-2">|</span>
+        </small>
+
+        <!-- FILTRO ENTREGUE -->
+        <small class="white-space-nowrap" *ngIf="!!form.controls.entregue.getRawValue()">
+            <i class="pi pi-star"></i> <span> Entregue</span>
+            <span class="mx-2">|</span>
+        </small>
+
+        <!-- CHIP FINALIZADO -->
+        <small class="white-space-nowrap" *ngIf="!!form.controls.finalizado.getRawValue()">
+            <i class="pi pi-star"></i> <span> Finalizado</span>
+            <span class="mx-2">|</span>
+        </small>
+
+        <!-- CHIP CANCELADO -->
+        <small class="white-space-nowrap" *ngIf="!!form.controls.cancelado.getRawValue()">
+            <i class="pi pi-star"></i> <span> Cancelado</span>
+            <span class="mx-2">|</span>
+        </small>
+
+        <!-- CHIP EXPIRADO -->
+        <small class="white-space-nowrap" *ngIf="!!form.controls.expirado.getRawValue()">
+            <i class="pi pi-star"></i> <span> Expirado</span>
+            <span class="mx-2">|</span>
+        </small>
+    </div>
+
+    <!-- BOTAO FILTRAR -->
+    <div class="flex justify-content-end">
+        <p-button type="button" icon="pi pi-filter" label="Filtrar" styleClass="w-11rem mt-3"
+            (onClick)="filtroVisivel = !filtroVisivel" />
+    </div>
+
+</section>
+
+<!-- LISTA DE PEDIDOS -->
+<section>
+    <cmp-pedido-card *ngFor="let codPedVnd of lista" [codPedVnd]="codPedVnd" (change)="filtrar()" />
+
+    <div class="card" *ngIf="lista && !lista.length">
+        <span class="font-light mb-3 text-900 ">☹️ Nenhum pedido realizado!</span>
+    </div>
+</section>

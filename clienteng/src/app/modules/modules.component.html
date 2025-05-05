@@ -1,0 +1,72 @@
+<cmp-header>
+    <cmp-header-categorie text="Perfil" textBold="{{pessoaLogada?.nomeSimples}}" icon="pi pi-user"
+        (onClick)="menuOpen = true"></cmp-header-categorie>
+    <cmp-header-categorie text="Acompanhar" textBold="pedidos" icon="pi pi-box"
+        routerLink="pedidos"></cmp-header-categorie>
+
+    <cmp-header-menu icon="pi pi-shopping-bag" routerLink="pedidos"></cmp-header-menu>
+    <cmp-header-menu (onClick)="menuOpen = true"></cmp-header-menu>
+</cmp-header>
+
+<cmp-main>
+    <div class="flex gap-4 mt-4">
+        <div class="sidebar descktop">
+            <h2 class="descktop">Olá, {{pessoaLogada?.nomeSimples}}</h2>
+            <ng-container *ngTemplateOutlet="sidebar"></ng-container>
+        </div>
+        <div class="flex-1">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</cmp-main>
+
+<p-sidebar [(visible)]="menuOpen" position="right">
+    <div class="flex flex-column h-full">
+        <div class="flex-1">
+            <p class="font-normal text-600 mb-1">Boas-vindas!</p>
+            <h3 class="text-xl font-bold">{{pessoaLogada?.nomeSimples}} <i class="ml-2 pi pi-chevron-right"></i></h3>
+            <button pButton label="Genrenciar perfil" [outlined]="true" [rounded]="true" routerLink="perfil"
+                (click)="menuOpen = false"></button>
+            <div class="p-3 w-full bg-gray-100 border-round mt-5 cursor-pointer mb-3" routerLink="pedidos"
+                (click)="menuOpen = false">
+                <i class="pi pi-box text-primary text-xl mb-5"></i>
+                <span class="block font-bold text-sm">Acompanhar <br>pedidos</span>
+            </div>
+            <div class="mobile">
+                <ng-container *ngTemplateOutlet="sidebar"></ng-container>
+            </div>
+        </div>
+        <p-button severity="danger" icon="pi pi-sign-out" label="Sair" [outlined]="true" [rounded]="true"
+            (onClick)="logout()"></p-button>
+    </div>
+</p-sidebar>
+
+<ng-template #sidebar>
+    <nav>
+        <ul class="nav-list">
+            <li class="nav-item" (click)="menuOpen = false">
+                <a class="nav-item__link" routerLinkActive="nav-item__link--active" routerLink="resumo"> <i
+                        class="pi pi-user"></i> Resumo da conta </a>
+            </li>
+            <li class="nav-item" (click)="menuOpen = false">
+                <a class="nav-item__link" routerLinkActive="nav-item__link--active" routerLink="perfil"><i
+                        class="pi pi-pencil"></i> Meus dados</a>
+            </li>
+            <li class="nav-item" (click)="menuOpen = false">
+                <a class="nav-item__link" routerLinkActive="nav-item__link--active" routerLink="pedidos"><i
+                        class="pi pi-list-check"></i> Meus pedidos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-item__link" routerLinkActive="nav-item__link--active" routerLink="endereco"><i
+                        class="pi pi-map-marker"></i> Meus endereços</a>
+            </li>
+            <li class="nav-item" (click)="menuOpen = false">
+                <a class="nav-item__link" routerLinkActive="nav-item__link--active" routerLink="altera-senha"><i
+                        class="pi pi-key"></i> Alterar senha</a>
+            </li>
+            <li class="nav-item descktop" (click)="menuOpen = false">
+                <a class="nav-item__link text-red-500" (click)="logout()"><i class="pi pi-sign-out"></i> Sair</a>
+            </li>
+        </ul>
+    </nav>
+</ng-template>

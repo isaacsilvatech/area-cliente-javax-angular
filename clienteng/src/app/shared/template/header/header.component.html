@@ -1,0 +1,14 @@
+<header class="header container">
+    <div class="header__content container__content">
+        <div class="header__title" routerLink="">
+            <img src="assets/application/favicon/favicon.svg" alt="Logo" class="logo" />
+            <h1 class="title">ÁREA DO CLIENTE</h1>
+        </div>
+        <div class="header__categories">
+            <ng-content select="cmp-header-categorie"></ng-content>
+        </div>
+        <div class="header__menu">
+            <ng-content select="cmp-header-menu"></ng-content>
+        </div>
+    </div>
+</header>

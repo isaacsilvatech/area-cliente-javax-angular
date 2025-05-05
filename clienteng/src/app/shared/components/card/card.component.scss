@@ -1,0 +1,30 @@
+:host {
+    display: block;
+    width: 100%;
+    max-width: 450px;
+    min-width: 300px;
+}
+
+.card {
+    background-color: var(--bluegray-50);
+    border-radius: 1rem;
+    padding: 1rem;
+    width: 100%;
+
+    .card__header {}
+
+    .card__content {
+        margin-top: 1rem;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    :host {
+        min-width: 100%;
+        max-width: 100%;
+
+        ::ng-deep .card .card__content cmp-card-content button {
+            width: 100% !important;
+        }
+    }
+}

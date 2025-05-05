@@ -1,0 +1,37 @@
+<div class="login">
+    <div class="form" [formGroup]="form">
+        <h3>Login</h3>
+        <div class="field">
+            <label>CPF</label>
+            <input pInputText class="w-full" variant="filled" formControlName="login" mask="000.000.000-00"
+                cmpProximoCampo="senha">
+            <small *ngIf="form.controls.login.touched && form.controls.login.invalid"
+                class="text-red-500 font-bold">Digite seu CPF</small>
+        </div>
+        <div class="field">
+            <label>Senha</label>
+            <p-password inputId="senha" class="w-full" styleClass="w-full" inputStyleClass="w-full" variant="filled"
+                formControlName="senha" [toggleMask]="true" [feedback]="false" cmpProximoCampo="btn"></p-password>
+            <small *ngIf="form.controls.senha.touched && form.controls.senha.invalid"
+                class="text-red-500 font-bold">Digite sua senha</small>
+            <small *ngIf="senhaIvalida" class="text-red-500 font-bold">Senha incorreta!</small>
+        </div>
+        <button id="btn" pButton label="Entrar" class="w-full" [rounded]="true" (click)="entrar()"
+            [loading]="loading"></button>
+        <a class="text-center underline cursor-pointer" (click)="esqueciSenha()">Esqueci a senha</a>
+    </div>
+</div>
+
+
+<p-dialog [(visible)]="clienteNaoCadastrado" [modal]="true" [closable]="true"
+    [style]="{ width: '100%', maxWidth: '450px', margin: '1rem' }" header="Ops!">
+
+    <ng-template pTemplate="header">
+        <div class="flex justify-content-between align-items-center gap-2">
+            <i class="pi pi-exclamation-circle text-blue-500 text-4xl"></i>
+            <h3 class="m-0">Ops!</h3>
+        </div>
+    </ng-template>
+
+    
+</p-dialog>
